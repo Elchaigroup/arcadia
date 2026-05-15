@@ -5,7 +5,7 @@
 > **Mission framing:** Long-term mission is to make traditional sales teams unnecessary for most B2B companies. Phases 0–4 ship the foundation: outbound sales that replaces SDR work entirely.
 > **Status:** Specification locked. No code written yet.
 > **Operating mode:** Internal-only Phases 0–4. Commercialization gated on Phase 4.5 decision.
-> **Language scope:** English only. Multi-language deferred to Phase 5+.
+> **Language scope:** English only. Not deferred — not on the roadmap.
 
 This document is the source of truth for Claude Code and any engineer working on this codebase. Every architectural decision below is **locked** unless this document is updated via ADR.
 
@@ -30,8 +30,8 @@ This document is the source of truth for Claude Code and any engineer working on
 13. Test-mode keys never touch production integrations
 14. LLM outputs validated by Pydantic, retry-once-then-fail
 15. Suppression list consulted before every send
-16. No industry/region/language hardcoded
-17. No marketing site in Phases 0–4
+16. No industry/region hardcoded; **English-only product** (no i18n)
+17. **App + docs only** — no marketing site, no CMS, no public-facing pages outside app
 18. No host-specific code in business logic
 19. Per-tenant cost caps enforced before every LLM call
 20. Every agent output meets §17 quality bar
@@ -92,7 +92,7 @@ Triggers: upfront (specified at lead creation), manual (dashboard click), auto-t
 - Calendar booking engine (we integrate Cal.com, Calendly, Google Calendar)
 - AI inference (we call Anthropic + OpenAI fallback)
 - Marketing website (app + docs only)
-- Multi-language support (Phase 5+)
+- Multi-language support (English-only product, no exceptions)
 - Voice/phone agents
 - AI avatar video (different product category)
 
@@ -1034,8 +1034,8 @@ arcadia/
 13. Test keys never touch production
 14. Pydantic validation, retry-once-then-fail
 15. Suppression list before every send
-16. **No industry/language/region hardcoded.** CI lint scans business logic
-17. No marketing site Phases 0–4
+16. **No industry/language/region hardcoded for tenants** — tenant context detected from inputs. **English-only product:** no language detection, no translation, no localization, no `i18n` libraries, no language code parameters. CI lint scans business logic for hardcoded non-English strings, language codes, region names, and i18n imports.
+17. **No marketing site or marketing-page builder in Phases 0–4.** No public-facing pages outside the app. No CMS, no marketing-page builder, no SEO routes. Signup happens inside `app.<domain>/sign-up` only. Docs site (`docs.<domain>`) is API/integration reference, not marketing.
 18. No host-specific code in business logic
 19. **Per-tenant cost caps enforced before every LLM call**
 20. **Every agent output meets §17 quality bar** — measured, not assumed
@@ -1315,7 +1315,7 @@ Used as:
 
 ### 18.2 Deferred (Phase 4+ candidates, ADR-required)
 
-Multi-model orchestration, pre-meeting briefing, per-tenant voice fine-tuning, multi-channel orchestration, auto-skill library, multi-language native.
+Multi-model orchestration, pre-meeting briefing, per-tenant voice fine-tuning, multi-channel orchestration, auto-skill library.
 
 ---
 
@@ -1505,7 +1505,6 @@ The architecture specifies a product a team of 4–5 senior engineers builds in 
 - [ ] Legal entity (separate SPV recommended)
 - [ ] Commercialization wedge (vertical/persona/geography)
 - [ ] Phase 2 friendly tenants
-- [ ] Language expansion timing (Phase 5+, demand-driven)
 - [ ] Founder time commitment (golden-dataset + eval discipline = 8–12 hrs/week sustained)
 
 ---
