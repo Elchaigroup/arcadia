@@ -1124,6 +1124,7 @@ Per-lead cost attribution wired. Per-tenant economics dashboard. Time-saved metr
 
 ### Phase 5 — Commercialization (3–6 months, gated)
 
+- **Prerequisite:** Verify Anthropic commercial terms compatibility before public signup launch — confirm platform-inference pattern is acceptable for proprietary value-add SaaS, or apply to Claude Partner Network for direct relationship.
 - Stripe + Lago billing
 - Public signup
 - Pricing inside app
@@ -1505,6 +1506,7 @@ The architecture specifies a product a team of 4–5 senior engineers builds in 
 - [ ] Legal entity (separate SPV recommended)
 - [ ] Commercialization wedge (vertical/persona/geography)
 - [ ] Phase 2 friendly tenants
+- [ ] Anthropic Partner Network application timing (Phase 4.5 latest, before commercial launch)
 - [ ] Founder time commitment (golden-dataset + eval discipline = 8–12 hrs/week sustained)
 
 ---
